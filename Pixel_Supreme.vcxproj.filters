@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{50daea1f-7f6c-4521-92d6-6ae9e4c2ab86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cpp">
+      <UniqueIdentifier>{a0ccb641-da09-4c5a-a4da-0bb598f5e596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cpp\main">
+      <UniqueIdentifier>{3479f155-e199-42ac-b136-85c9c98e40d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\include">
+      <UniqueIdentifier>{6a22d0dc-fc40-4363-b713-fbdbf4981b5b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\cpp\main\main.cpp">
+      <Filter>src\cpp\main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GameObject.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GameStateManager.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GIF.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Logging.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Menu.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Node.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Platform.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Sprite.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Stack.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\StackAllocator.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Text.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\include\GameObject.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\GameState.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\GameStateManager.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\GIF.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Logging.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Menu.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Node.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Platform.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\SimpleIni.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Sprite.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Stack.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\StackAllocator.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Text.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
