@@ -1,35 +1,51 @@
 #include "../include/Platform.h"
-#include <iostream>
 #include <string>
 
 SDL_Renderer* Platform::renderer;
 
 Platform::Platform(std::string name) {
 	CSimpleIniA config;
-	//config INI file path
-	config.LoadFile("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\config.INI");
-	
-	//Window size
-	width = std::stoi(config.GetValue("Resolution", "width", ""));
-	height = std::stoi(config.GetValue("Resolution", "height", ""));
+	log->Info("Loading Config file...", "Platform");
+	//Try reading config.INI file
+	try {
+		//config INI file path
+		config.LoadFile("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\config.INI");
+		//Window size
+		width = std::stoi(config.GetValue("Resolution", "width", ""));
+		height = std::stoi(config.GetValue("Resolution", "height", ""));
+		if (width == NULL || height == NULL) {
+			throw std::exception("ERROR");
+		}
+		else {
+			log->Info("Config file loaded successfully.", "Platform");
+			log->Info("Config file read successfully.","Platform");
+		}
+	}
+	catch (...) {
+		//config.INI file was missing or resolution parameters were not found
+		log->Error("Config file error.", "Platform");
+		exit(1);
+	}
 
+	log->Info("Initializing SDL...", "Platform");
 	//SDL window logic
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		std::cout << "SDL_Init";
+		log->Error("SDL failed to initialize.","SDL/Platform");
 		return;
 	}
 	window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 	if (window == nullptr) {
-		std::cout << "CreateWindow";
+		log->Error("Failed to create window.","SDL/Platform");
 		SDL_Quit();
 		return;
 	}
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr) {
-		std::cout << "CreateRenderer";
+		log->Error("Failed to create renderer.","SDL/Platform");
 		SDL_Quit();
 		return;
 	}
+	log->Info("SDL initialized successfully.", "SDL/Platform");
 }
 
 void Platform::RenderClear() {

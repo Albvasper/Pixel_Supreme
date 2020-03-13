@@ -2,12 +2,16 @@
 #include "GameState.h"
 #include "GameStateManager.h"
 #include "Sprite.h"
+#include "Logging.h"
+
 class Menu : public GameState {
 
 	private:
 		Platform* platform;														//Pointer to platform
 		Sprite* background;														//Background image for the state
 		GameStateManager* manager;												//Pointer to the manager
+		Logging* log;															//Pointer to logging object
+
 
 	public:
 		Menu();																	//Constructor

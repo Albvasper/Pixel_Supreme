@@ -5,6 +5,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include "Logging.h"
 
 class StackAllocator {
 
@@ -21,4 +22,5 @@ class StackAllocator {
 		void * start;
 		Marker marker;
 		Marker prev;
+		Logging* log;
 };
