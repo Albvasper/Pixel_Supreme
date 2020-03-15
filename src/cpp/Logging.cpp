@@ -3,6 +3,7 @@
 #include <windows.h>
 #pragma warning(disable : 4996)
 #include <ctime>
+#include <fstream>
 
 Logging::Logging() {
 }
