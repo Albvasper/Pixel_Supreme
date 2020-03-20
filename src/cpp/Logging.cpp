@@ -4,10 +4,18 @@
 #pragma warning(disable : 4996)
 #include <ctime>
 
+Logging* Logging::logging;
+
 Logging::Logging() {
 }
 
-void Logging::Init() {
+Logging* Logging::Get() {
+	if (logging == nullptr) {
+		logging = new Logging();
+		return logging;
+	} else {
+		return logging;
+	}
 }
 
 void Logging::Section(std::string message) {
@@ -15,103 +23,84 @@ void Logging::Section(std::string message) {
 	std::cout << "-------------------------------------";
 	std::cout << " " << message << " ";
 	std::cout << "-------------------------------------" << std::endl;
-	//Save in log file
-	std::ofstream logFile;
-	logFile.open("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\LastLog.txt");
-	logFile << "-------------------------------------";
-	logFile << " " << message << " ";
-	logFile << "-------------------------------------" << std::endl;
-	logFile.close();
+	//Save in msg string
+	logTxt = logTxt + "-------------------------------------";
+	logTxt = logTxt + " " + message + " ";
+	logTxt = logTxt + "-------------------------------------\n";
 }
 
 void Logging::Info(std::string message, std::string section) {
 	unsigned int color = 10;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-	//Open log file
-	std::ofstream logFile;
-	logFile.open("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\LastLog.txt");
 	std::cout << "INFO          ";
-	logFile << "INFO          ";
+	logTxt = logTxt + "INFO          ";
 	TimeStamp();
 	std::cout << "          " << section << "->";
-	logFile << "          " << section << "->";
+	logTxt = logTxt + "          " + section + "->";
 	int sectionL = section.length();
 	sectionL = 21 - sectionL;
 	for (int i = 0; i < sectionL; i++) {
 		std::cout << " ";
-		logFile << " ";
+		logTxt = logTxt + " ";
 	}
 	std::cout << message << std::endl;
-	logFile << message << std::endl;
+	logTxt = logTxt + message + "\n";
 	//Reset console color
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-	logFile.close();
 }
 
 void Logging::Warning(std::string message, std::string section) {
 	unsigned int color = 224;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-	//Open log file
-	std::ofstream logFile;
-	logFile.open("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\LastLog.txt");
 	std::cout << "WARNING       ";
-	logFile << "WARNING       ";
+	logTxt = logTxt + "WARNING       ";
 	TimeStamp();
 	std::cout << "          " << section << "->";
-	logFile << "          " << section << "->";
+	logTxt = logTxt + "          " + section + "->";
 	int sectionL = section.length();
 	sectionL = 21 - sectionL;
 	for (int i = 0; i < sectionL; i++) {
 		std::cout << " ";
-		logFile << " ";
+		logTxt = logTxt + " ";
 	}
 	std::cout << message << std::endl;
-	logFile << message << std::endl;
+	logTxt = logTxt + message + "\n";
 	//Reset console color
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-	logFile.close();
 }
 
 void Logging::Error(std::string message, std::string section) {
 	unsigned int color = 207;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-	//Open log file
-	std::ofstream logFile;
-	logFile.open("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\LastLog.txt");
 	std::cout << "ERROR         ";
-	logFile << "ERROR         ";
+	logTxt = logTxt + "ERROR         ";
 	TimeStamp();
 	std::cout << "          " << section << "->";
-	logFile << "          " << section << "->";
+	logTxt = logTxt + "          " + section + "->";
 	int sectionL = section.length();
 	sectionL = 21 - sectionL;
 	for (int i = 0; i < sectionL; i++) {
 		std::cout << " ";
-		logFile << " ";
+		logTxt = logTxt + " ";
 	}
 	std::cout << message << std::endl;
-	logFile << message << std::endl;
+	logTxt = logTxt + message + "\n";
 	//Reset console color
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-	logFile.close();
 }
 
 void Logging::Debug(std::string message) {
 	unsigned int color = 15;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-	//Open log file
-	std::ofstream logFile;
-	logFile.open("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\LastLog.txt");
 	std::cout << "DEBUG         ";
-	logFile << "DEBUG         ";
+	logTxt = logTxt + "DEBUG         ";
 	TimeStamp();
 	std::cout << "          " << "Log" << "->";
-	logFile << "          " << "Log" << "->";
+	logTxt = logTxt + "          " + "Log" + "->";
 	std::cout << "                  " << "'" << message << "'" << std::endl;
-	logFile << "                  " << "'" << message << "'" << std::endl;
+	logTxt = logTxt + "                  " + "'" + message + "'" + "\n";
 	//Reset console color
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-	logFile.close();
 }
 
 void Logging::TimeStamp() {
@@ -123,18 +112,20 @@ void Logging::TimeStamp() {
 	std::cout << " [" << 1 + ltm->tm_hour << ":";
 	std::cout << 1 + ltm->tm_min << ":";
 	std::cout << 1 + ltm->tm_sec << "]";
-	//Save in log file
-	std::ofstream logFile;
-	logFile.open("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\LastLog.txt");
-	logFile << ltm->tm_mday;
-	logFile << "/" << 1 + ltm->tm_mon;
-	logFile << "/" << 1900 + ltm->tm_year;
-	logFile << " [" << 1 + ltm->tm_hour << ":";
-	logFile << 1 + ltm->tm_min << ":";
-	logFile << 1 + ltm->tm_sec << "]";
+	//Save in msg string
+	logTxt = logTxt + std::to_string(ltm->tm_mday);
+	logTxt = logTxt + "/" + std::to_string(1 + ltm->tm_mon);
+	logTxt = logTxt + "/" + std::to_string(1900 + ltm->tm_year);
+	logTxt = logTxt + " [" + std::to_string(1 + ltm->tm_hour) + ":";
+	logTxt = logTxt + std::to_string(1 + ltm->tm_min) + ":";
+	logTxt = logTxt + std::to_string(1 + ltm->tm_sec) + "]";
 }
 
-void Logging::Close() {
+void Logging::Save() {
+	std::ofstream logFile;
+	logFile.open("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\LastLog.txt");
+	logFile << logTxt;
+	logFile.close();	
 }
 
 Logging::~Logging() {

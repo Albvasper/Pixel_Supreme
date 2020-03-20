@@ -1,11 +1,11 @@
 #include "../include/GameStateManager.h"
+#include "../include/Logging.h"
 #include <windows.h>
 
 GameStateManager::GameStateManager() {
-	log->Section("START");
-	log->Info("Initializing...", "GameStateManager");
+	Logging::Get()->Section("START");
+	Logging::Get()->Info("Initializing...", "GameStateManager");
 	platform = new Platform("Pixel Supreme");
-	log = new Logging();
 }
 
 void GameStateManager::GameLoop() {
@@ -16,13 +16,13 @@ void GameStateManager::GameLoop() {
 			//if there are no states in the stack 
 			if (states.getSize() == 0) {	
 				//Throw an error
-				log->Error("There are no states in the stack!", "GameStateManager");
+				Logging::Get()->Error("There are no states in the stack!", "GameStateManager");
 				throw std::exception("ERROR");
 			}
 			else {
 				//Print success once
 				if (success == true) {
-					log->Info("Game loop executed successfully.","GameStateManager");
+					Logging::Get()->Info("Game loop executed successfully.","GameStateManager");
 					success = false;
 				}
 				//Take the state that is on top of the stack
@@ -37,7 +37,7 @@ void GameStateManager::GameLoop() {
 		}
 		catch (...) {
 			//Error ocurred and close window
-			log->Error("Critical error, the engine is closing...", "GameStateManager");
+			Logging::Get()->Error("Critical error, the engine is closing...", "GameStateManager");
 			//Quit the gameloop
 			break;
 		}
@@ -45,7 +45,7 @@ void GameStateManager::GameLoop() {
 }
 
 void GameStateManager::SetState(GameState* state) {
-	log->Info("Setting new state...", "GameStateManager");
+	Logging::Get()->Info("Setting new state...", "GameStateManager");
 	//Initialize current state
 	state->Init(platform, this);
 	//Push the state to the states stack
@@ -56,7 +56,7 @@ void GameStateManager::RealaseState() {
 	//Take the state that is at the top of the stack
 	auto state = states.first->data;
 	//Close the current state
-	log->Info("Closing current state...", "GameStateManager");
+	Logging::Get()->Info("Closing current state...", "GameStateManager");
 	state->Close();
 	//Pop it from the stack
 	states.pop();

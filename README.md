@@ -9,4 +9,5 @@ Getting Started:
 	- SDL2.dll
 	- SDL2_image.dll
 	- SDL2_ttf.dll
-	- zlib1.dll
+	- zlib1.dl
+	

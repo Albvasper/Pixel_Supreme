@@ -5,7 +5,6 @@
 #include <iostream>
 #include "Sprite.h"
 #include "SimpleIni.h"
-#include "logging.h"
 
 class GameState;
 
@@ -15,7 +14,6 @@ class Platform {
 		int width;														//Width of the window 
 		int height;														//Height of the window
 		SDL_Window* window;												//Pointer to SDL window
-		Logging* log;													//Pointer to logging object
 
 	public:
 		static SDL_Renderer* renderer;									//Pointer to the SDL renderer

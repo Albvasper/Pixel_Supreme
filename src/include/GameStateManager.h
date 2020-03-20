@@ -2,7 +2,6 @@
 #include "GameState.h"
 #include "Platform.h"
 #include "Stack.h"
-#include "Logging.h"
 
 class GameState;
 
@@ -12,7 +11,6 @@ class GameStateManager {
 		//std::stack<GameState*> states;		
 		Stack<GameState*> states;			//Container that stores game states
 		Platform* platform;					//Pointer to platform
-		Logging* log;						//Pointer to logging object
 
 	public:
 		GameStateManager();					//Constructor

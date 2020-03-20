@@ -5,17 +5,19 @@
 class Logging {
 
 	private:
+		static Logging* logging;
+		std::string logTxt;
+		Logging();
 		void TimeStamp();
+		~Logging();
 
 	public:
-		Logging();
-		void Init();
+		static Logging* Get();
 		void Section(std::string message);
 		void Info(std::string message, std::string section);
 		void Warning(std::string message, std::string section);
 		void Error(std::string message, std::string section);
 		void Debug(std::string message);
-		void Close();
-		~Logging();
+		void Save();
 };
 

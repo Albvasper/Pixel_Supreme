@@ -1,11 +1,12 @@
 #include "../include/Platform.h"
+#include "../include/Logging.h"
 #include <string>
 
 SDL_Renderer* Platform::renderer;
 
 Platform::Platform(std::string name) {
 	CSimpleIniA config;
-	log->Info("Loading Config file...", "Platform");
+	Logging::Get()->Info("Loading Config file...", "Platform");
 	//Try reading config.INI file
 	try {
 		//config INI file path
@@ -17,35 +18,35 @@ Platform::Platform(std::string name) {
 			throw std::exception("ERROR");
 		}
 		else {
-			log->Info("Config file loaded successfully.", "Platform");
-			log->Info("Config file read successfully.","Platform");
+			Logging::Get()->Info("Config file loaded successfully.", "Platform");
+			Logging::Get()->Info("Config file read successfully.","Platform");
 		}
 	}
 	catch (...) {
 		//config.INI file was missing or resolution parameters were not found
-		log->Error("Config file error.", "Platform");
+		Logging::Get()->Error("Config file error.", "Platform");
 		exit(1);
 	}
 
-	log->Info("Initializing SDL...", "Platform");
+	Logging::Get()->Info("Initializing SDL...", "Platform");
 	//SDL window logic
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		log->Error("SDL failed to initialize.","SDL/Platform");
+		Logging::Get()->Error("SDL failed to initialize.","SDL/Platform");
 		return;
 	}
 	window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 	if (window == nullptr) {
-		log->Error("Failed to create window.","SDL/Platform");
+		Logging::Get()->Error("Failed to create window.","SDL/Platform");
 		SDL_Quit();
 		return;
 	}
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr) {
-		log->Error("Failed to create renderer.","SDL/Platform");
+		Logging::Get()->Error("Failed to create renderer.","SDL/Platform");
 		SDL_Quit();
 		return;
 	}
-	log->Info("SDL initialized successfully.", "SDL/Platform");
+	Logging::Get()->Info("SDL initialized successfully.", "SDL/Platform");
 }
 
 void Platform::RenderClear() {

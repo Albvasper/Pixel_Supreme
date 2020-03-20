@@ -3,15 +3,15 @@
 // Code borrowed from: https://github.com/fmandujano/stackAllocator
 //--------------------------------------------------------------------
 #include "../include/StackAllocator.h"
+#include "../include/Logging.h"
 
 StackAllocator::StackAllocator(size_t size) {
-	log = new Logging();
 	//printf("%i,%i \n", sizeof(void*), sizeof(size_t));
 	static_assert(sizeof(size_t) >= sizeof(void*), "the size of uint must be greater than or equal to the size of a pointer");
 	maxSize = size;
 	start = malloc(size);
 	if (start == NULL) {
-		log->Error("Failed to assign memory.","StackAllocator");
+		Logging::Get()->Error("Failed to assign memory.","StackAllocator");
 	}
 
 	marker = (size_t)start;
