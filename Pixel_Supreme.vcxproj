@@ -23,13 +23,18 @@
     <ClCompile Include="src\cpp\GameStateManager.cpp" />
     <ClCompile Include="src\cpp\GIF.cpp" />
     <ClCompile Include="src\cpp\Logging.cpp" />
+    <ClCompile Include="src\cpp\LuaScript.cpp" />
     <ClCompile Include="src\cpp\main\main.cpp" />
     <ClCompile Include="src\cpp\Menu.cpp" />
     <ClCompile Include="src\cpp\Node.cpp" />
     <ClCompile Include="src\cpp\Platform.cpp" />
+    <ClCompile Include="src\cpp\primitives\Circle.cpp" />
+    <ClCompile Include="src\cpp\primitives\Primitive.cpp" />
+    <ClCompile Include="src\cpp\primitives\Rect.cpp" />
     <ClCompile Include="src\cpp\Sprite.cpp" />
     <ClCompile Include="src\cpp\Stack.cpp" />
     <ClCompile Include="src\cpp\StackAllocator.cpp" />
+    <ClCompile Include="src\cpp\String.cpp" />
     <ClCompile Include="src\cpp\Text.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -38,14 +43,23 @@
     <ClInclude Include="src\include\GameStateManager.h" />
     <ClInclude Include="src\include\GIF.h" />
     <ClInclude Include="src\include\Logging.h" />
+    <ClInclude Include="src\include\Lua.h" />
+    <ClInclude Include="src\include\LuaScript.h" />
     <ClInclude Include="src\include\Menu.h" />
     <ClInclude Include="src\include\Node.h" />
     <ClInclude Include="src\include\Platform.h" />
+    <ClInclude Include="src\include\primitives\Circle.h" />
+    <ClInclude Include="src\include\primitives\Primitive.h" />
+    <ClInclude Include="src\include\primitives\Rect.h" />
     <ClInclude Include="src\include\SimpleIni.h" />
     <ClInclude Include="src\include\Sprite.h" />
     <ClInclude Include="src\include\Stack.h" />
     <ClInclude Include="src\include\StackAllocator.h" />
+    <ClInclude Include="src\include\String.h" />
     <ClInclude Include="src\include\Text.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\LUA\Scripts\Player.lua" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -118,13 +132,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\alber\Desktop\Pixel_Supreme\deps\sdl2\include;C:\Users\alber\Desktop\Pixel_Supreme\deps\SDL2_image\include;C:\Users\alber\Desktop\Pixel_Supreme\deps\SDL2_ttf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\alber\Desktop\Pixel_Supreme\deps\sdl2\include;C:\Users\alber\Desktop\Pixel_Supreme\deps\SDL2_image\include;C:\Users\alber\Desktop\Pixel_Supreme\deps\SDL2_ttf\include;C:\Users\alber\Desktop\Pixel_Supreme\deps\LUA\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\alber\Desktop\Pixel_Supreme\deps\sdl2\lib\x86;C:\Users\alber\Desktop\Pixel_Supreme\deps\SDL2_image\lib\x86;C:\Users\alber\Desktop\Pixel_Supreme\deps\SDL2_ttf\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\alber\Desktop\Pixel_Supreme\deps\sdl2\lib\x86;C:\Users\alber\Desktop\Pixel_Supreme\deps\SDL2_image\lib\x86;C:\Users\alber\Desktop\Pixel_Supreme\deps\SDL2_ttf\lib\x86;C:\Users\alber\Desktop\Pixel_Supreme\deps\LUA;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;liblua53.a;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

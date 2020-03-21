@@ -38,6 +38,7 @@ void GameStateManager::GameLoop() {
 		catch (...) {
 			//Error ocurred and close window
 			Logging::Get()->Error("Critical error, the engine is closing...", "GameStateManager");
+			Logging::Get()->Save();
 			//Quit the gameloop
 			break;
 		}

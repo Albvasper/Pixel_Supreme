@@ -25,6 +25,7 @@ Platform::Platform(std::string name) {
 	catch (...) {
 		//config.INI file was missing or resolution parameters were not found
 		Logging::Get()->Error("Config file error.", "Platform");
+		Logging::Get()->Save();
 		exit(1);
 	}
 

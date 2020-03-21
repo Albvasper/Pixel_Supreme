@@ -1,6 +1,8 @@
+#include <iostream>
+#include <string>
 #include "../include/Menu.h"
-#include<iostream>
 #include "../include/Logging.h"
+#include "../include/LuaScript.h"
 
 Menu::Menu() {
 }
@@ -9,6 +11,9 @@ void Menu::Init(Platform* platform, GameStateManager* manager) {
 	Logging::Get()->Info("Initializing..","State");
 	this->platform = platform;
 	this->manager = manager;
+	/*LuaScript script("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\src\\LUA\\Scripts\\player.lua");
+	std::string filename = script.get<std::string>("player.filename");
+	int posX = script.get<int>("player.pos.X");*/
 }
 
 void Menu::Draw() {

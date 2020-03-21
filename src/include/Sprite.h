@@ -1,7 +1,7 @@
 #pragma once
+#include "GameObject.h"
 #include "SDL.h"
 #include <iostream>
-#include "GameObject.h"
 #include <string>
 
 class Sprite : public GameObject {
