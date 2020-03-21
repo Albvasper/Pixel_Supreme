@@ -28,7 +28,22 @@ Platform::Platform(std::string name) {
 		Logging::Get()->Save();
 		exit(1);
 	}
-
+	try {
+		memory = std::stoi(config.GetValue("Memory", "MB", ""));
+		stackAllocator = new StackAllocator(1024 * 1024 * memory);
+		if (memory == NULL) {
+			throw std::exception("ERROR");
+		}
+		else {
+			Logging::Get()->Info("Memory assigned successfully.", "Platform");
+		}
+	}
+	catch (...) {
+		//config.INI file was missing or memory parameters were not found
+		Logging::Get()->Error("Config file error.", "Platform");
+		Logging::Get()->Save();
+		exit(1);
+	}
 	Logging::Get()->Info("Initializing SDL...", "Platform");
 	//SDL window logic
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {

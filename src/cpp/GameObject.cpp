@@ -11,9 +11,6 @@ void GameObject::Update() {
 	//std::cout << id << ": Update GameObject" << std::endl;
 }
 
-void GameObject::Render() {
-}
-
 int GameObject::GetID() {
 	return id;
 }

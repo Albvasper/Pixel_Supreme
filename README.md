@@ -10,4 +10,4 @@ Getting Started:
 	- SDL2_image.dll
 	- SDL2_ttf.dll
 	- zlib1.dl
-	
+	- lua53.dll	

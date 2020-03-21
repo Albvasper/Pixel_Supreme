@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Sprite.h"
 #include "SimpleIni.h"
+#include "StackAllocator.h"
 
 class GameState;
 
@@ -14,6 +15,8 @@ class Platform {
 		int width;														//Width of the window 
 		int height;														//Height of the window
 		SDL_Window* window;												//Pointer to SDL window
+		int memory;														//Amount of memory that the engine will use
+		StackAllocator* stackAllocator;									//Stack allocator object to manage memory
 
 	public:
 		static SDL_Renderer* renderer;									//Pointer to the SDL renderer

@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
-#include "../include/Menu.h"
+#include "../include/Game.h"
 #include "../include/Logging.h"
 #include "../include/LuaScript.h"
 
-Menu::Menu() {
+Game::Game() {
 }
 
-void Menu::Init(Platform* platform, GameStateManager* manager) {
+void Game::Init(Platform* platform, GameStateManager* manager) {
 	Logging::Get()->Info("Initializing..","State");
 	this->platform = platform;
 	this->manager = manager;
@@ -16,12 +16,12 @@ void Menu::Init(Platform* platform, GameStateManager* manager) {
 	int posX = script.get<int>("player.pos.X");*/
 }
 
-void Menu::Draw() {
+void Game::Draw() {
 	platform->RenderClear();
 	platform->RenderPresent();
 }
 
-bool Menu::Input(int keyInput) {
+bool Game::Input(int keyInput) {
 	//If ESC is pressed
 	if (keyInput == 27) {
 		//Quit
@@ -38,11 +38,11 @@ bool Menu::Input(int keyInput) {
 	return false;
 }
 
-void Menu::Update() {
+void Game::Update() {
 }
 
-void Menu::Close() {
+void Game::Close() {
 }
 
-Menu::~Menu() {
+Game::~Game() {
 }

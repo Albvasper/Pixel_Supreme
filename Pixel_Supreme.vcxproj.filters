@@ -25,6 +25,9 @@
     <Filter Include="src\include\primitives">
       <UniqueIdentifier>{fd6553d0-c5c4-472b-9cb6-ac627d1f0979}</UniqueIdentifier>
     </Filter>
+    <Filter Include="doc">
+      <UniqueIdentifier>{74b38f13-2155-4741-a9e5-77a876b4e5b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\main\main.cpp">
@@ -42,16 +45,10 @@
     <ClCompile Include="src\cpp\Logging.cpp">
       <Filter>src\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\Menu.cpp">
-      <Filter>src\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\Node.cpp">
       <Filter>src\cpp</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\Platform.cpp">
-      <Filter>src\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Sprite.cpp">
       <Filter>src\cpp</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\Stack.cpp">
@@ -78,6 +75,12 @@
     <ClCompile Include="src\cpp\primitives\Rect.cpp">
       <Filter>src\cpp\primitives</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\Sprite.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Game.cpp">
+      <Filter>src\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\GameObject.h">
@@ -95,9 +98,6 @@
     <ClInclude Include="src\include\Logging.h">
       <Filter>src\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Menu.h">
-      <Filter>src\include</Filter>
-    </ClInclude>
     <ClInclude Include="src\include\Node.h">
       <Filter>src\include</Filter>
     </ClInclude>
@@ -105,9 +105,6 @@
       <Filter>src\include</Filter>
     </ClInclude>
     <ClInclude Include="src\include\SimpleIni.h">
-      <Filter>src\include</Filter>
-    </ClInclude>
-    <ClInclude Include="src\include\Sprite.h">
       <Filter>src\include</Filter>
     </ClInclude>
     <ClInclude Include="src\include\Stack.h">
@@ -137,10 +134,24 @@
     <ClInclude Include="src\include\primitives\Rect.h">
       <Filter>src\include\primitives</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\Sprite.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Game.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\LUA\Scripts\Player.lua">
       <Filter>src\LUA\Scripts</Filter>
     </None>
+    <None Include="doc\config.INI">
+      <Filter>doc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="doc\LastLog.txt">
+      <Filter>doc</Filter>
+    </Text>
   </ItemGroup>
 </Project>

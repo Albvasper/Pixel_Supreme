@@ -3,6 +3,7 @@
 #include <fstream> 
 #include <exception>
 #include <windows.h>	
+#include "../include/Logging.h"
 
 Text::Text(SDL_Renderer* renderer, const std::string& font_path, int font_size, const std::string& message_text, const SDL_Color& color) {
 	TTF_Init();
@@ -22,21 +23,24 @@ SDL_Texture* Text::LoadFont(SDL_Renderer* renderer, const std::string& font_path
 		font = TTF_OpenFont(font_path.c_str(), font_size);
 	}
 	catch (std::exception & e) {
-		std::cout << e.what() << '\n';
+		Logging::Get()->Warning(e.what(), "Text");
 	}
 	if (!font) {
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 207);
-		std::cout << "failed to load font" << std::endl;
+		Logging::Get()->Warning("Failed to load font", "Text");
+
+
 	}
 	auto text_surface = TTF_RenderText_Solid(font, message_text.c_str(), color);
 	if (!text_surface) {
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 207);
-		std::cout << "failed to create text surface" << std::endl;
+		Logging::Get()->Warning("Failed to create text surface", "Text");
+
 	}
 	auto text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
 	if (!text_texture) {
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 207);
-		std::cout << "Failed to create text texture" << std::endl;;
+		Logging::Get()->Warning("Failed to create text texture", "Text");
 	}
 
 	TTF_CloseFont(font);

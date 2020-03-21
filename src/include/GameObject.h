@@ -12,7 +12,6 @@ class GameObject {
 		GameObject();
 		GameObject(int _id);
 		virtual void Update();
-		virtual void Render();
 		int GetID();
 		void SetID(unsigned int _id);
 		void SetPos(float x, float y);

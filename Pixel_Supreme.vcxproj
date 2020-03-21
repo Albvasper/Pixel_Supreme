@@ -25,7 +25,7 @@
     <ClCompile Include="src\cpp\Logging.cpp" />
     <ClCompile Include="src\cpp\LuaScript.cpp" />
     <ClCompile Include="src\cpp\main\main.cpp" />
-    <ClCompile Include="src\cpp\Menu.cpp" />
+    <ClCompile Include="src\cpp\Game.cpp" />
     <ClCompile Include="src\cpp\Node.cpp" />
     <ClCompile Include="src\cpp\Platform.cpp" />
     <ClCompile Include="src\cpp\primitives\Circle.cpp" />
@@ -45,7 +45,7 @@
     <ClInclude Include="src\include\Logging.h" />
     <ClInclude Include="src\include\Lua.h" />
     <ClInclude Include="src\include\LuaScript.h" />
-    <ClInclude Include="src\include\Menu.h" />
+    <ClInclude Include="src\include\Game.h" />
     <ClInclude Include="src\include\Node.h" />
     <ClInclude Include="src\include\Platform.h" />
     <ClInclude Include="src\include\primitives\Circle.h" />
@@ -59,7 +59,11 @@
     <ClInclude Include="src\include\Text.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="doc\config.INI" />
     <None Include="src\LUA\Scripts\Player.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="doc\LastLog.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
