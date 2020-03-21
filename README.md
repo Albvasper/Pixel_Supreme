@@ -11,3 +11,4 @@ Getting Started:
 	- SDL2_ttf.dll
 	- zlib1.dl
 	- lua53.dll	
+- Configure the linker to your pc's path
