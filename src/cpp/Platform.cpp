@@ -6,7 +6,12 @@ SDL_Renderer* Platform::renderer;
 
 Platform::Platform(std::string name) {
 	CSimpleIniA config;
-	Logging::Get()->Info("Loading Config file...", "Platform");
+	if (Logging::Get()->CheckLang() == "ENG") {
+		Logging::Get()->Info("Loading Config file...", "Platform");
+	}
+	else if (Logging::Get()->CheckLang() == "ESP") {
+		Logging::Get()->Info("Cargando archivo de configuracion...", "Plataforma");
+	}
 	//Try reading config.INI file
 	try {
 		//config INI file path
@@ -18,13 +23,24 @@ Platform::Platform(std::string name) {
 			throw std::exception("ERROR");
 		}
 		else {
-			Logging::Get()->Info("Config file loaded successfully.", "Platform");
-			Logging::Get()->Info("Config file read successfully.","Platform");
+			if (Logging::Get()->CheckLang() == "ENG") {
+				Logging::Get()->Info("Config file loaded successfully.", "Platform");
+				Logging::Get()->Info("Config file read successfully.", "Platform");
+			}
+			else if (Logging::Get()->CheckLang() == "ESP") {
+				Logging::Get()->Info("Configuracion cargada con exito.", "Plataforma");
+				Logging::Get()->Info("Configuracion leia con exito.", "Plataforma");
+			}
 		}
 	}
 	catch (...) {
 		//config.INI file was missing or resolution parameters were not found
-		Logging::Get()->Error("Config file error.", "Platform");
+		if (Logging::Get()->CheckLang() == "ENG") {
+			Logging::Get()->Error("Config file error.", "Platform");
+		}
+		else if (Logging::Get()->CheckLang() == "ESP") {
+			Logging::Get()->Error("Error de configuracion", "Plataforma");
+		}
 		Logging::Get()->Save();
 		exit(1);
 	}
@@ -35,34 +51,69 @@ Platform::Platform(std::string name) {
 			throw std::exception("ERROR");
 		}
 		else {
-			Logging::Get()->Info("Memory assigned successfully.", "Platform");
+			if (Logging::Get()->CheckLang() == "ENG") {
+				Logging::Get()->Info("Memory assigned successfully.", "Platform");
+			}
+			else if (Logging::Get()->CheckLang() == "ESP") {
+				Logging::Get()->Info("Memoria asignada con exito.", "Plataforma");
+			}
 		}
 	}
 	catch (...) {
 		//config.INI file was missing or memory parameters were not found
-		Logging::Get()->Error("Config file error.", "Platform");
+		if (Logging::Get()->CheckLang() == "ENG") {
+			Logging::Get()->Error("Config file error.", "Platform");
+		}
+		else if (Logging::Get()->CheckLang() == "ESP") {
+			Logging::Get()->Error("Error de configuracion", "Plataforma");
+		}
 		Logging::Get()->Save();
 		exit(1);
 	}
-	Logging::Get()->Info("Initializing SDL...", "Platform");
+	if (Logging::Get()->CheckLang() == "ENG") {
+		Logging::Get()->Info("Initializing SDL...", "Platform");
+	}
+	else if (Logging::Get()->CheckLang() == "ESP") {
+		Logging::Get()->Info("Iniciando SDL...", "Plataforma");
+	}
 	//SDL window logic
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		Logging::Get()->Error("SDL failed to initialize.","SDL/Platform");
+		if (Logging::Get()->CheckLang() == "ENG") {
+			Logging::Get()->Error("SDL failed to initialize.", "SDL/Platform");
+		}
+		else if (Logging::Get()->CheckLang() == "ESP") {
+			Logging::Get()->Error("SDL no se pudo iniciar.", "SDL/Plataforma");
+		}
 		return;
 	}
 	window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 	if (window == nullptr) {
-		Logging::Get()->Error("Failed to create window.","SDL/Platform");
+		if (Logging::Get()->CheckLang() == "ENG") {
+			Logging::Get()->Error("Failed to create window.", "SDL/Platform");
+		}
+		else if (Logging::Get()->CheckLang() == "ESP") {
+			Logging::Get()->Error("No se pudo crear ventana.", "SDL/Plataforma");
+		}
 		SDL_Quit();
 		return;
 	}
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr) {
-		Logging::Get()->Error("Failed to create renderer.","SDL/Platform");
+		if (Logging::Get()->CheckLang() == "ENG") {
+			Logging::Get()->Error("Failed to create renderer.", "SDL/Platform");
+		}
+		else if (Logging::Get()->CheckLang() == "ESP") {
+			Logging::Get()->Error("No se pudo crear renderizador.", "SDL/Plataforma");
+		}
 		SDL_Quit();
 		return;
 	}
-	Logging::Get()->Info("SDL initialized successfully.", "SDL/Platform");
+	if (Logging::Get()->CheckLang() == "ENG") {
+		Logging::Get()->Info("SDL initialized successfully.", "SDL/Platform");
+	}
+	else if (Logging::Get()->CheckLang() == "ESP") {
+		Logging::Get()->Info("SDL fue iniciado con exito.", "SDL/Plataforma");
+	}
 }
 
 void Platform::RenderClear() {

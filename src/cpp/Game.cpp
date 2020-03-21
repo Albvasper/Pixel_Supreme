@@ -8,7 +8,12 @@ Game::Game() {
 }
 
 void Game::Init(Platform* platform, GameStateManager* manager) {
-	Logging::Get()->Info("Initializing..","State");
+	if (Logging::Get()->CheckLang() == "ENG") {
+		Logging::Get()->Info("Initializing..","State");
+	}
+	else if (Logging::Get()->CheckLang() == "ESP"){
+		Logging::Get()->Info("Inicializando..", "Estado");
+	}
 	this->platform = platform;
 	this->manager = manager;
 	/*LuaScript script("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\src\\LUA\\Scripts\\player.lua");
@@ -25,10 +30,18 @@ bool Game::Input(int keyInput) {
 	//If ESC is pressed
 	if (keyInput == 27) {
 		//Quit
-		Logging::Get()->Info("Quiting state.", "State");
-		Logging::Get()->Info("Quiting game loop.", "GameStateManager");
-		Logging::Get()->Info("Quiting engine.", "GameStateManager");
-		Logging::Get()->Section("END");
+		if (Logging::Get()->CheckLang() == "ENG") {
+			Logging::Get()->Info("Quiting state.", "State");
+			Logging::Get()->Info("Quiting game loop.", "GameStateManager");
+			Logging::Get()->Info("Quiting engine.", "GameStateManager");
+			Logging::Get()->Section("END");
+		}
+		else if (Logging::Get()->CheckLang() == "ESP") {
+			Logging::Get()->Info("Saliendo del estado acutal.", "Estado");
+			Logging::Get()->Info("Saliendo del game loop.", "AdminDeEstados");
+			Logging::Get()->Info("Cerrando Pixel Supreme.", "AdminDeEstados");
+			Logging::Get()->Section("FIN");
+		}
 		Logging::Get()->Save();
 		exit(1);
 	}

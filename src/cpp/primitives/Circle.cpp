@@ -42,7 +42,12 @@ void Circle::DrawCircle() {
 		}
 	}
 	else {
-		Logging::Get()->Warning("Circle radius needs to be 0 or above.", "Primitive");
+		if (Logging::Get()->CheckLang() == "ENG") {
+			Logging::Get()->Warning("Circle radius needs to be 0 or above.", "Primitive");
+		}
+		else if (Logging::Get()->CheckLang() == "ESP") {
+			Logging::Get()->Warning("El radio del circulo tiene que ser mayor a 0", "Primitiva");
+		}
 	}
 }
 

@@ -11,7 +11,12 @@ StackAllocator::StackAllocator(size_t size) {
 	maxSize = size;
 	start = malloc(size);
 	if (start == NULL) {
-		Logging::Get()->Error("Failed to assign memory.","StackAllocator");
+		if (Logging::Get()->CheckLang() == "ENG") {
+			Logging::Get()->Error("Failed to assign memory.", "StackAllocator");
+		}
+		else if (Logging::Get()->CheckLang() == "ESP") {
+			Logging::Get()->Error("No se pudo asignar memoria", "AsignadorDeMem");
+		}
 	}
 
 	marker = (size_t)start;

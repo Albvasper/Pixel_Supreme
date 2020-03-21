@@ -3,6 +3,7 @@
 #include <windows.h>
 #pragma warning(disable : 4996)
 #include <ctime>
+#include "../include/SimpleIni.h"
 
 Logging* Logging::logging;
 
@@ -101,6 +102,27 @@ void Logging::Debug(std::string message) {
 	logTxt = logTxt + "                  " + "'" + message + "'" + "\n";
 	//Reset console color
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+}
+
+std::string Logging::CheckLang() {
+	CSimpleIniA config;
+	//Try reading config.INI file
+	try {
+		//config INI file path
+		config.LoadFile("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\doc\\config.INI");
+		//Window size
+		language = config.GetValue("Language", "language", "");
+		if (language != "ENG" && language != "ESP") {
+			throw std::exception("ERROR");
+		}
+	}
+	catch (...) {
+		//config.INI file was missing or resolution parameters were not found
+		Logging::Get()->Error("Config file error.", "Logging");
+		Logging::Get()->Save();
+		exit(1);
+	}
+	return language;
 }
 
 void Logging::TimeStamp() {

@@ -1,15 +1,15 @@
 ------------------------------------- START -------------------------------------
-INFO          20/3/2020 [20:17:46]          GameStateManager->     Initializing...
-INFO          20/3/2020 [20:17:46]          Platform->             Loading Config file...
-INFO          20/3/2020 [20:17:46]          Platform->             Config file loaded successfully.
-INFO          20/3/2020 [20:17:46]          Platform->             Config file read successfully.
-INFO          20/3/2020 [20:17:47]          Platform->             Memory assigned successfully.
-INFO          20/3/2020 [20:17:47]          Platform->             Initializing SDL...
-INFO          20/3/2020 [20:17:47]          SDL/Platform->         SDL initialized successfully.
-INFO          20/3/2020 [20:17:47]          GameStateManager->     Setting new state...
-INFO          20/3/2020 [20:17:47]          State->                Initializing..
-INFO          20/3/2020 [20:17:47]          GameStateManager->     Game loop executed successfully.
-INFO          20/3/2020 [20:17:47]          State->                Quiting state.
-INFO          20/3/2020 [20:17:47]          GameStateManager->     Quiting game loop.
-INFO          20/3/2020 [20:17:47]          GameStateManager->     Quiting engine.
+INFO          20/3/2020 [21:50:34]          GameStateManager->     Initializing...
+INFO          20/3/2020 [21:50:34]          Platform->             Loading Config file...
+INFO          20/3/2020 [21:50:34]          Platform->             Config file loaded successfully.
+INFO          20/3/2020 [21:50:34]          Platform->             Config file read successfully.
+INFO          20/3/2020 [21:50:34]          Platform->             Memory assigned successfully.
+INFO          20/3/2020 [21:50:34]          Platform->             Initializing SDL...
+INFO          20/3/2020 [21:50:35]          SDL/Platform->         SDL initialized successfully.
+INFO          20/3/2020 [21:50:35]          GameStateManager->     Setting new state...
+INFO          20/3/2020 [21:50:35]          State->                Initializing..
+INFO          20/3/2020 [21:50:35]          GameStateManager->     Game loop executed successfully.
+INFO          20/3/2020 [21:50:37]          State->                Quiting state.
+INFO          20/3/2020 [21:50:37]          GameStateManager->     Quiting game loop.
+INFO          20/3/2020 [21:50:37]          GameStateManager->     Quiting engine.
 ------------------------------------- END -------------------------------------

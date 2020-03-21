@@ -3,8 +3,14 @@
 #include <windows.h>
 
 GameStateManager::GameStateManager() {
-	Logging::Get()->Section("START");
-	Logging::Get()->Info("Initializing...", "GameStateManager");
+	if (Logging::Get()->CheckLang() == "ENG") {
+		Logging::Get()->Section("START");
+		Logging::Get()->Info("Initializing...", "GameStateManager");
+	}
+	else if (Logging::Get()->CheckLang() == "ESP") {
+		Logging::Get()->Section("INICIO");
+		Logging::Get()->Info("Inicializando...", "AdminDeEstados");
+	}
 	platform = new Platform("Pixel Supreme");
 }
 
@@ -16,13 +22,23 @@ void GameStateManager::GameLoop() {
 			//if there are no states in the stack 
 			if (states.getSize() == 0) {	
 				//Throw an error
-				Logging::Get()->Error("There are no states in the stack!", "GameStateManager");
+				if (Logging::Get()->CheckLang() == "ENG") {
+					Logging::Get()->Error("There are no states in the stack!", "GameStateManager");
+				}
+				else if (Logging::Get()->CheckLang() == "ESP") {
+					Logging::Get()->Error("No hay estados en la pila!", "AdminDeEstados");
+				}
 				throw std::exception("ERROR");
 			}
 			else {
 				//Print success once
 				if (success == true) {
-					Logging::Get()->Info("Game loop executed successfully.","GameStateManager");
+					if (Logging::Get()->CheckLang() == "ENG") {
+						Logging::Get()->Info("Game loop executed successfully.", "GameStateManager");
+					}
+					else if (Logging::Get()->CheckLang() == "ESP") {
+						Logging::Get()->Info("Bucle de juego ejecutado con exito.", "AdminDeEstados");
+					}
 					success = false;
 				}
 				//Take the state that is on top of the stack
@@ -37,7 +53,15 @@ void GameStateManager::GameLoop() {
 		}
 		catch (...) {
 			//Error ocurred and close window
-			Logging::Get()->Error("Critical error, the engine is closing...", "GameStateManager");
+			if (success == true) {
+				if (Logging::Get()->CheckLang() == "ENG") {
+					Logging::Get()->Error("Critical error, the engine is closing...", "GameStateManager");
+				}
+				else if (Logging::Get()->CheckLang() == "ESP") {
+					Logging::Get()->Error("Error critico, cerrando engine...", "AdminDeEstados");
+				}
+				success = false;
+			}
 			Logging::Get()->Save();
 			//Quit the gameloop
 			break;
@@ -46,7 +70,12 @@ void GameStateManager::GameLoop() {
 }
 
 void GameStateManager::SetState(GameState* state) {
-	Logging::Get()->Info("Setting new state...", "GameStateManager");
+	if (Logging::Get()->CheckLang() == "ENG") {
+		Logging::Get()->Info("Setting new state...", "GameStateManager");
+	}
+	else if (Logging::Get()->CheckLang() == "ESP") {
+		Logging::Get()->Info("Configurando nuevo estado...", "AdminDeEstados");
+	}
 	//Initialize current state
 	state->Init(platform, this);
 	//Push the state to the states stack
@@ -57,7 +86,12 @@ void GameStateManager::RealaseState() {
 	//Take the state that is at the top of the stack
 	auto state = states.first->data;
 	//Close the current state
-	Logging::Get()->Info("Closing current state...", "GameStateManager");
+	if (Logging::Get()->CheckLang() == "ENG") {
+		Logging::Get()->Info("Closing current state...", "GameStateManager");
+	}
+	else if (Logging::Get()->CheckLang() == "ESP") {
+		Logging::Get()->Info("Cerrando el estado acutal...", "AdminDeEstados");
+	}
 	state->Close();
 	//Pop it from the stack
 	states.pop();
