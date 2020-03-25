@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "GameStateManager.h"
 #include "Sprite.h"
+#include "LuaScript.h"
 #include <map>
 
 class Game : public GameState {
@@ -11,6 +12,8 @@ class Game : public GameState {
 		Sprite* background;														//Background image for the state
 		GameStateManager* manager;												//Pointer to the manager
 		std::map<int, GameObject> goHashMap;									//ID hash map
+		LuaScript* lua;
+		Sprite* sprite;
 
 	public:
 		Game();																	//Constructor

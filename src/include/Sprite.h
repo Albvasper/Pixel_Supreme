@@ -3,10 +3,12 @@
 #include "SDL.h"
 #include <iostream>
 #include <string>
+#include "Lua.h"
 
-class Sprite : public GameObject {
+class Sprite  {
 
 private:
+
 	SDL_Texture* sprite;
 	std::string name;
 	unsigned short width;
@@ -14,6 +16,7 @@ private:
 
 public:
 	Sprite();
+	//int Lua_HostFunction(lua_State* L);
 	void LoadSprite(std::string name);
 	SDL_Texture* GetTexture();
 	int GetWidth();

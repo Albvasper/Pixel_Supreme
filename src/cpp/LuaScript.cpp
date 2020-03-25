@@ -2,29 +2,33 @@
 #include "../include/Logging.h"
 #include <iostream>
 
-LuaScript::LuaScript(const std::string& filename) {
-    L = luaL_newstate();
-    if (luaL_loadfile(L, filename.c_str()) || lua_pcall(L, 0, 0, 0)) {
-        if (Logging::Get()->CheckLang() == "ENG") {
-            Logging::Get()->Warning("Script not loaded.", filename);
-        }
-        else if (Logging::Get()->CheckLang() == "ESP") {
-            Logging::Get()->Warning("No se pudo cargar script", filename);
-        }
-        L = 0;
-    }
+LuaScript::LuaScript() {
 }
 
-void LuaScript::printError(const std::string& variableName, const std::string& reason) {
-    std::cout << "Error: can't get [" << variableName << "]. " << reason << std::endl;
-    if (Logging::Get()->CheckLang() == "ENG") {
-        Logging::Get()->Warning("Can't get [" + variableName + "]. " + reason, "LuaScript");
+bool LuaScript::CheckLua(lua_State*L, int r) {
+    if (r != LUA_OK) {
+        std::string errormsg = lua_tostring(L, -1);
+        Logging::Get()->Error(errormsg, "LuaScript");
+        return false;
     }
-    else if (Logging::Get()->CheckLang() == "ESP") {
-        Logging::Get()->Warning("No se pudo acceder a [" + variableName + "]. " + reason, "LuaScript");
+    return true;
+}
+
+void LuaScript::RunScript() {
+    lua_State* L = luaL_newstate();
+    luaL_openlibs(L);
+    if (CheckLua(L, luaL_dofile(L, "C:\\Users\\alber\\Desktop\\Pixel_Supreme\\src\\LUA\\Scripts\\Player.lua"))) {
+        lua_getglobal(L, "x");
+        if (lua_isnumber(L, -1)) {
+            x = (float)lua_tonumber(L, -1);
+        }
+        lua_getglobal(L, "y");
+        if (lua_isnumber(L, -1)) {
+            y = (float)lua_tonumber(L, -1);
+        }
     }
+    lua_close(L);
 }
 
 LuaScript::~LuaScript() {
-    if (L) lua_close(L);
 }

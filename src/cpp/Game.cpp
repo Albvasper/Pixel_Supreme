@@ -2,7 +2,6 @@
 #include <string>
 #include "../include/Game.h"
 #include "../include/Logging.h"
-#include "../include/LuaScript.h"
 
 Game::Game() {
 }
@@ -16,13 +15,14 @@ void Game::Init(Platform* platform, GameStateManager* manager) {
 	}
 	this->platform = platform;
 	this->manager = manager;
-	/*LuaScript script("C:\\Users\\alber\\Desktop\\Pixel_Supreme\\src\\LUA\\Scripts\\player.lua");
-	std::string filename = script.get<std::string>("player.filename");
-	int posX = script.get<int>("player.pos.X");*/
+	lua = new LuaScript();
+	sprite = new Sprite();
+	sprite->LoadSprite("C:/Users/alber/Desktop/Pixel_Supreme/assets/Kilobyte.png");
 }
 
 void Game::Draw() {
 	platform->RenderClear();
+	platform->RenderSprite(sprite, lua->x , lua->y, 0);
 	platform->RenderPresent();
 }
 
@@ -52,6 +52,7 @@ bool Game::Input(int keyInput) {
 }
 
 void Game::Update() {
+	lua->RunScript();
 }
 
 void Game::Close() {
